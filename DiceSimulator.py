@@ -3,7 +3,8 @@ print("This is a dice stimulator")
 x = "y"
 
 while x == "y":
-    number = random.randint(1,6)
+    """Generate random number """
+    number = random.randint(1,7)
 
     if number == 1:
         print("----------")
