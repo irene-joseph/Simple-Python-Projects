@@ -1,7 +1,7 @@
 import json
 from difflib import get_close_matches
 
-data = json.load(open("data.json"))
+data = json.load(open("data.json", "r+"))
 
 def translate(word):
     word = word.lower()
@@ -17,18 +17,31 @@ def translate(word):
         if decide == "y":
             return data[get_close_matches(word , data.keys())[0]]
         elif decide == "n":
-            return("Oops word "+word+" not found")
+            word_not_found(word)
         else:
             return("You have entered wrong input please enter just y or n ")
     else:
-        print("Oops word "+word+" not found")
-
-
-
-word = input("Enter the word you want to search ")
-output = translate(word)
-if type(output) == list:
-    for item in output:
-        print(item)
-else:
-    print(output)
+        word_not_found(word)
+def word_not_found(word):
+    qs = input("Can you help me find the meaning? Type y for Yes: ")
+    if(qs == 'y'):
+        meaning = input("Please enter the meaning of "+word+" here: ")
+        temp_dict = {word:meaning}
+        with open("data.json", "r+") as file:
+            data = json.load(file)
+            data.update(temp_dict)
+            file.seek(0)
+            json.dump(data, file)
+        print("Dictionary updated! Thank you for your contribution")
+more = 'y'
+while(more == 'y'):
+    word = input("Enter the word you want to search: ")
+    output = translate(word)
+    if type(output) == list:
+        for item in output:
+            print(item)
+    elif output == None:
+        pass
+    else:
+        print(output)
+    more = input("Do you want to continue? type y for Yes: ")
