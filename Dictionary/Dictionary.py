@@ -3,6 +3,7 @@ from difflib import get_close_matches
 
 data = json.load(open("data.json", "r+"))
 
+# function that returns the meaning if the word exists in the json file
 def translate(word):
     word = word.lower()
     if word in data:
@@ -22,6 +23,8 @@ def translate(word):
             return("You have entered wrong input please enter just y or n ")
     else:
         word_not_found(word)
+        
+# function to add new found word and its meaning to the json file
 def word_not_found(word):
     qs = input("Can you help me find the meaning? Type y for Yes: ")
     if(qs == 'y'):
@@ -33,15 +36,22 @@ def word_not_found(word):
             file.seek(0)
             json.dump(data, file)
         print("Dictionary updated! Thank you for your contribution")
-more = 'y'
-while(more == 'y'):
-    word = input("Enter the word you want to search: ")
-    output = translate(word)
-    if type(output) == list:
-        for item in output:
-            print(item)
-    elif output == None:
-        pass
-    else:
-        print(output)
-    more = input("Do you want to continue? type y for Yes: ")
+
+#main method
+def main():
+    more = 'y'
+    while(more == 'y'):
+        word = input("Enter the word you want to search: ")
+        output = translate(word)
+        if type(output) == list:
+            for item in output:
+                print(item)
+        elif output == None:
+            pass
+        else:
+            print(output)
+        more = input("Do you want to continue? type y for Yes: ")
+
+if __name__ == "__main__":
+    main()
+
