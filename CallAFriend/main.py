@@ -6,6 +6,7 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
 
+# function to select a friend from given list without repetition
 def call_a_friend():
     my_friends = ["Skifin", "Nayana", "Sanduana", "Navya", "Arya",
                   "Issac", "Eric", "Ramya", "Devika", "Archana", "Nayana JY", "Sanil", "Yadu"]
