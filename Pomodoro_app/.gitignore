@@ -1,0 +1,8 @@
+# IntelliJ
+build/
+venv/
+dist/
+__pycache__/
+.idea/
+*.spec
+
