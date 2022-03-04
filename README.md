@@ -1,2 +1,2 @@
-# simple_python_projects
+# Simple-Python_Projects
 Simple and fun projects implemented using Python.
